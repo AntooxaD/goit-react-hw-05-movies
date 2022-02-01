@@ -1,22 +1,44 @@
-import PropTypes from "prop-types";
-async function fetchImages(searchQuery, page) {
-  const KEY = "24234389-dbdb592ca842ff709e1e6a06c";
+import axios from "axios";
+const URL = "https://api.themoviedb.org/3/";
 
-  return fetch(
-    `https://pixabay.com/api/?key=${KEY}&q=${searchQuery}&image_type=photo&orientation=horizonta&per_page=12&page=${page}`
-  ).then((response) => {
-    if (response.ok) {
-      return response.json();
-    }
-    return Promise.reject(new Error("No matches found"));
-  });
+const KEY = "31eeb7843a227fd247daa20511620f3d";
+
+async function fetchPopularFilms() {
+  const url = `${URL}trending/movie/day?api_key=${KEY}`;
+  const response = await axios.get(url);
+
+  return response.data.results;
+}
+async function fetchFilmById(id) {
+  const url = `${URL}movie/${id}?api_key=${KEY}&language=en-US`;
+  const response = await axios.get(url);
+
+  return response.data;
 }
 
-const api = {
-  fetchImages,
+async function fetchByQuery(query) {
+  const url = `${URL}search/movie?api_key=${KEY}&language=en-US&page=1&include_adult=false&query=${query}`;
+  const response = await axios.get(url);
+
+  return response.data.results;
+}
+
+async function fetchCredits(id) {
+  const url = `${URL}movie/${id}/credits?api_key=${KEY}&language=en-US`;
+  const response = await axios.get(url);
+
+  return response.data.cast;
+}
+async function fetchRewies(id) {
+  const url = `${URL}movie/${id}/reviews?api_key=${KEY}&language=en-US`;
+  const response = await axios.get(url);
+
+  return response.data.results;
+}
+export {
+  fetchPopularFilms,
+  fetchFilmById,
+  fetchByQuery,
+  fetchCredits,
+  fetchRewies,
 };
-fetchImages.propTypes = {
-  query: PropTypes.string.isRequired,
-  page: PropTypes.number.isRequired,
-};
-export default api;
