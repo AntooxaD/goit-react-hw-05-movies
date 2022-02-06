@@ -6,7 +6,7 @@ import {
   MovieLink,
   MoviePoster,
   StyledLoader,
-} from "../сomponents/Styled/Styled";
+} from "../styled/Styled";
 
 function Homepage() {
   const [films, setFilms] = useState([]);

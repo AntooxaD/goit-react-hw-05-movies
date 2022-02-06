@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLocation, useHistory } from "react-router-dom";
-import { SearchForm, Button, Input } from "../Styled/Styled";
+import { SearchForm, Button, Input } from "../../styled/Styled";
 import { FcSearch } from "react-icons/fc";
 
 function SearchBar() {

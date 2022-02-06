@@ -1,8 +1,15 @@
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
-import Loader from "react-loader-spinner";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import { Rings } from "react-loader-spinner";
 
+export const Container = styled.div`
+  margin: 0, auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 16px;
+  padding: 24px;
+  width: 100%;
+`;
 export const Movies = styled.ul`
   display: flex;
   flex-wrap: wrap;
@@ -31,16 +38,8 @@ export const MovieLink = styled(Link)`
     padding: 24px;
   }
 `;
-export const Container = styled.div`
-  margin: 0, auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 16px;
-  padding: 24px;
-  width: 100%;
-`;
 
-export const StyledLoader = styled(Loader)`
+export const StyledLoader = styled(Rings)`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -90,6 +89,27 @@ export const Input = styled.input`
   }
 `;
 
+export const BackButton = styled.button`
+  padding: 5px;
+  width: 75px;
+  align-items: center;
+  cursor: pointer;
+  svg {
+    margin-right: 10px;
+  }
+`;
+
+export const FilmContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  padding: 24px;
+  align-items: center;
+  gap: 20px;
+`;
+
+export const ImgThumb = styled.div`
+  max-width: 250px;
+`;
 export const Button = styled.button`
   display: inline-block;
   width: 48px;
@@ -102,4 +122,42 @@ export const Button = styled.button`
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   outline: none;
+`;
+export const Actors = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 16px;
+`;
+export const Actor = styled.li`
+  display: flex;
+  gap: 25px;
+  width: 400px;
+  border: 1px grey solid;
+  border-radius: 15px;
+  padding: 16px;
+  :not(last-child) {
+    margin-bottom: 10px;
+  }
+  p {
+    margin-bottom: 65px;
+  }
+`;
+export const ReviewsList = styled.ul`
+  list-style: none;
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  li {
+    padding: 16px;
+    border: 1px grey solid;
+    border-radius: 10px;
+  }
+  h2 {
+    border-bottom: 1px black solid;
+  }
+  p {
+    padding: 24px;
+    width: 500px;
+  }
 `;

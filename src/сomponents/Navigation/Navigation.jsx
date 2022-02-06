@@ -1,14 +1,14 @@
-import { LinkStyled, Header } from "../Styled/Styled";
+import { LinkStyled, Header } from "../../styled/Styled";
 
 const Navigation = () => {
-  <Header>
-    <nav>
-      <LinkStyled to="/" exect>
-        HOME
-      </LinkStyled>
-      <LinkStyled to="/movies">MOVIES</LinkStyled>
-    </nav>
-  </Header>;
+  return (
+    <Header>
+      <nav>
+        <LinkStyled to="/">HOME</LinkStyled>
+        <LinkStyled to="/movies">MOVIES</LinkStyled>
+      </nav>
+    </Header>
+  );
 };
 
 export default Navigation;
