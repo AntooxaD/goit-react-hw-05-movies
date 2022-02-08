@@ -1,9 +1,11 @@
 import { ReviewsList } from "../../styled/Styled";
 import { useEffect, useState } from "react";
 import { fetchRewies } from "../../service/Api/Api";
+import { useParams } from "react-router-dom";
 
-export default function FilmReviews({ id }) {
+export default function FilmReviews() {
   const [reviews, setReviews] = useState([]);
+  let { movieId } = useParams();
 
   useEffect(() => {
     reviews.length > 0 &&
@@ -15,15 +17,15 @@ export default function FilmReviews({ id }) {
 
   useEffect(() => {
     const fetch = async () => {
-      const reviews = await fetchRewies(id);
+      const reviews = await fetchRewies(movieId);
       setReviews(reviews);
     };
     fetch();
-  }, [id]);
+  }, [movieId]);
 
   return (
     <>
-      {reviews.length > 0 ? (
+      {reviews.length ? (
         <ReviewsList>
           {reviews.map((review) => (
             <li key={review.id}>

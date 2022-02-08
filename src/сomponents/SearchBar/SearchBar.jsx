@@ -1,33 +1,50 @@
 import { useState } from "react";
-import { useLocation, useHistory } from "react-router-dom";
 import { SearchForm, Button, Input } from "../../styled/Styled";
 import { FcSearch } from "react-icons/fc";
+import { toast } from "react-toastify";
+import { useLocation, useNavigate } from "react-router";
 
-function SearchBar() {
+export default function SearchBar() {
   const [query, setQuery] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
-  const handleFormSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (query.trim() === "") {
+  //     toast.error(`Enter query`);
+  //     return;
+  //   }
+
+  //   setQuery("");
+  // };
+  const handleSubmit = (e) => {
     e.preventDefault();
+    if (query.trim() === "") {
+      toast.error(`Enter query`);
+      return;
+    }
+    setQuery("");
     query.trim() &&
-      history.push({
+      navigate({
         ...location,
         search: `query=${query}`,
       });
   };
+
+  const handleQueryChange = (e) => {
+    setQuery(e.currentTarget.value.toLowerCase());
+  };
   return (
-    <SearchForm onSubmit={handleFormSubmit}>
+    <SearchForm onSubmit={handleSubmit}>
       <Input
-        onChange={(e) => {
-          setQuery(e.target.value);
-        }}
         className="SearchForm-input"
         type="text"
         autoComplete="off"
         autoFocus
         placeholder="Search"
         value={query}
+        onChange={handleQueryChange}
       />
       <Button type="submit">
         {" "}
@@ -36,4 +53,3 @@ function SearchBar() {
     </SearchForm>
   );
 }
-export default SearchBar();

@@ -2,22 +2,28 @@ import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import Navigation from "./сomponents/Navigation/Navigation";
 import { Route, Routes } from "react-router-dom";
-import { lazy, Suspense } from "react";
-import { Container, StyledLoader } from "./styled/Styled";
+import { lazy } from "react";
+import { Container } from "./styled/Styled";
 
 const Homepage = lazy(() => import("./views/Homepage"));
 const Filmpage = lazy(() => import("./views/Filmpage"));
+const Moviespage = lazy(() => import("./views/Moviespage"));
+const FilmCasts = lazy(() => import("./сomponents/Cast/Cast"));
+const FilmReviews = lazy(() => import("./сomponents/Revievws/Rewiews"));
 
 export default function App() {
   return (
     <Container>
       <Navigation />
-      <Suspense fallback={<StyledLoader type="Rings" color="gray" />}>
-        <Routes>
-          <Route path="/" element={<Homepage />}></Route>
-          <Route path="/movies/:filmId" element={<Filmpage />}></Route>
-        </Routes>
-      </Suspense>
+
+      <Routes>
+        <Route path="/" element={<Homepage />}></Route>
+        <Route path="/movies" element={<Moviespage />}></Route>
+        <Route path="/movies/:movieId" element={<Filmpage />}>
+          <Route path="cast" element={<FilmCasts />}></Route>
+          <Route path="reviews" element={<FilmReviews />}></Route>
+        </Route>
+      </Routes>
     </Container>
   );
 }

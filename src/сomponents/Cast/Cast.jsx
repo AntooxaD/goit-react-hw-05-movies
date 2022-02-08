@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { fetchCredits } from "../../service/Api/Api";
 import { Actor, Actors } from "../../styled/Styled";
 
-export default function FilmCasts({ id }) {
+export default function FilmCasts() {
   const [casts, setCast] = useState([]);
-
+  let { movieId } = useParams();
   useEffect(() => {
     casts.length > 0 &&
       window.scrollTo({
@@ -15,11 +16,11 @@ export default function FilmCasts({ id }) {
 
   useEffect(() => {
     const fetch = async () => {
-      const casts = await fetchCredits(id);
+      const casts = await fetchCredits(movieId);
       setCast(casts);
     };
     fetch();
-  }, [id]);
+  }, [movieId]);
 
   return (
     <Actors>

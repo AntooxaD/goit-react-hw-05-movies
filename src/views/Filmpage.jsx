@@ -1,35 +1,27 @@
 import FilmInfo from "../сomponents/Filminfo/Filminfo";
 import { useState, useEffect } from "react";
-import {
-  useNavigate,
-  useLocation,
-  useParams,
-  Route,
-  Outlet,
-} from "react-router-dom";
+import { useNavigate, useLocation, useParams, Outlet } from "react-router-dom";
 import { fetchFilmById } from "../service/Api/Api";
 import { ImArrowLeft } from "react-icons/im";
-import FilmCasts from "../сomponents/Cast/Cast";
-import FilmReviews from "../сomponents/Revievws/Rewiews";
+
 import { BackButton, MovieLink } from "../styled/Styled";
 
 export default function Filmpage() {
   const [film, setFilm] = useState("");
-  const { url } = Outlet();
-  const { filmId } = useParams();
+  const { movieId } = useParams();
 
   useEffect(() => {
     const fetch = async () => {
-      const film = await fetchFilmById(filmId);
+      const film = await fetchFilmById(movieId);
       setFilm(film);
     };
     fetch();
-  }, [filmId]);
-  const history = useNavigate();
+  }, [movieId]);
+  const navigate = useNavigate();
   const location = useLocation();
 
   const handleBackClick = () => {
-    history.push(location.state?.from ? location.state?.from : "/");
+    navigate(location?.state?.from ?? "/");
   };
 
   return (
@@ -43,7 +35,7 @@ export default function Filmpage() {
       <div>
         <MovieLink
           to={{
-            pathname: `${url}/cast`,
+            pathname: `/movies/${movieId}/cast`,
             state: {
               from: location?.state?.from ?? "/",
             },
@@ -53,7 +45,7 @@ export default function Filmpage() {
         </MovieLink>
         <MovieLink
           to={{
-            pathname: `${url}/reviews`,
+            pathname: `/movies/${movieId}/reviews`,
             state: {
               from: location?.state?.from ?? "/",
             },
@@ -62,12 +54,8 @@ export default function Filmpage() {
           <span>Reviews</span>{" "}
         </MovieLink>
       </div>
-      <Route path={`${url}/cast`}>
-        <FilmCasts id={filmId} />
-      </Route>
-      <Route path={`${url}/reviews`}>
-        <FilmReviews id={filmId} />
-      </Route>
+
+      <Outlet />
     </>
   );
 }

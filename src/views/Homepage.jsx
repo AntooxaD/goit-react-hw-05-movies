@@ -8,7 +8,7 @@ import {
   StyledLoader,
 } from "../styled/Styled";
 
-function Homepage() {
+export default function Homepage() {
   const [films, setFilms] = useState([]);
   const [status, setStatus] = useState("idle");
 
@@ -44,7 +44,6 @@ function Homepage() {
     );
   }
   if (status === "pending") {
-    return <StyledLoader type="ThreeDots" color="gray" />;
+    return <StyledLoader type="Rings" color="gray" />;
   }
 }
-export default Homepage();
