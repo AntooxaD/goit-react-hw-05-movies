@@ -9,15 +9,6 @@ export default function SearchBar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (query.trim() === "") {
-  //     toast.error(`Enter query`);
-  //     return;
-  //   }
-
-  //   setQuery("");
-  // };
   const handleSubmit = (e) => {
     e.preventDefault();
     if (query.trim() === "") {

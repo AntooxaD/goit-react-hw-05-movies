@@ -42,13 +42,8 @@ export default function Moviespage() {
         <ToastContainer />
         <Movies>
           {films.map((film) => (
-            <Movie ey={film.id}>
-              <MovieLink
-                to={{
-                  pathname: `/movies/${film.id}`,
-                  state: { from: `/movies/?query=${query}` },
-                }}
-              >
+            <Movie key={film.id}>
+              <MovieLink to={`/movies/${film.id}`} state={{ from: location }}>
                 <MoviePoster
                   src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
                   alt={film.title}

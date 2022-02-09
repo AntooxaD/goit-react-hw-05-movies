@@ -31,6 +31,7 @@ export default function FilmCasts() {
               src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
               alt={cast.name}
               width="100px"
+              style={{ margin: "auto" }}
               onError={(e) => {
                 e.target.src =
                   "https://image.shutterstock.com/image-vector/picture-vector-icon-no-image-600w-1350441335.jpg";

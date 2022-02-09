@@ -1,7 +1,7 @@
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import Navigation from "./сomponents/Navigation/Navigation";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { lazy } from "react";
 import { Container } from "./styled/Styled";
 
@@ -15,14 +15,16 @@ export default function App() {
   return (
     <Container>
       <Navigation />
-
       <Routes>
-        <Route path="/" element={<Homepage />}></Route>
-        <Route path="/movies" element={<Moviespage />}></Route>
-        <Route path="/movies/:movieId" element={<Filmpage />}>
-          <Route path="cast" element={<FilmCasts />}></Route>
-          <Route path="reviews" element={<FilmReviews />}></Route>
+        <Route index element={<Homepage />}></Route>
+        <Route path="movies">
+          <Route index element={<Moviespage />}></Route>
+          <Route path=":movieId" element={<Filmpage />}>
+            <Route path="cast" element={<FilmCasts />}></Route>
+            <Route path="reviews" element={<FilmReviews />}></Route>
+          </Route>
         </Route>
+        <Route path="*" element={<Navigate to={"/"} replace={true} />} />
       </Routes>
     </Container>
   );

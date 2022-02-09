@@ -18,7 +18,7 @@ export const Movies = styled.ul`
 `;
 
 export const Movie = styled.li`
-  width: 250px;
+  width: 150px;
   &:hover {
     box-shadow: 3px 3px 6px rgba(51, 50, 50, 0.25);
     border-radius: 3px;
@@ -91,11 +91,17 @@ export const Input = styled.input`
 
 export const BackButton = styled.button`
   padding: 5px;
-  width: 75px;
+  width: 30px;
+
+  border-radius: 50%;
   align-items: center;
   cursor: pointer;
   svg {
-    margin-right: 10px;
+    margin: auto;
+  }
+  :hover {
+    background-color: #6464ff;
+    color: white;
   }
 `;
 
@@ -127,11 +133,13 @@ export const Actors = styled.ul`
   list-style: none;
   margin: 0;
   padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(3);
 `;
 export const Actor = styled.li`
-  display: flex;
   gap: 25px;
-  width: 400px;
+  width: 200px;
   border: 1px grey solid;
   border-radius: 15px;
   padding: 16px;
@@ -139,14 +147,13 @@ export const Actor = styled.li`
     margin-bottom: 10px;
   }
   p {
-    margin-bottom: 65px;
+    margin-bottom: 5px;
   }
 `;
 export const ReviewsList = styled.ul`
   list-style: none;
   padding: 16px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   gap: 10px;
   li {
     padding: 16px;
@@ -158,6 +165,5 @@ export const ReviewsList = styled.ul`
   }
   p {
     padding: 24px;
-    width: 500px;
   }
 `;

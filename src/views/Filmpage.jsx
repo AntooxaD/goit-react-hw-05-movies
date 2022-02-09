@@ -10,6 +10,9 @@ export default function Filmpage() {
   const [film, setFilm] = useState("");
   const { movieId } = useParams();
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   useEffect(() => {
     const fetch = async () => {
       const film = await fetchFilmById(movieId);
@@ -17,8 +20,6 @@ export default function Filmpage() {
     };
     fetch();
   }, [movieId]);
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const handleBackClick = () => {
     navigate(location?.state?.from ?? "/");
@@ -28,7 +29,6 @@ export default function Filmpage() {
     <>
       <BackButton onClick={handleBackClick}>
         <ImArrowLeft />
-        Go back
       </BackButton>
 
       <FilmInfo film={film} />
@@ -54,7 +54,6 @@ export default function Filmpage() {
           <span>Reviews</span>{" "}
         </MovieLink>
       </div>
-
       <Outlet />
     </>
   );
