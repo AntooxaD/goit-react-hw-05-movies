@@ -34,22 +34,16 @@ export default function Filmpage() {
       <FilmInfo film={film} />
       <div>
         <MovieLink
-          to={{
-            pathname: `/movies/${movieId}/cast`,
-            state: {
-              from: location?.state?.from ?? "/",
-            },
+          to={`/movies/${movieId}/cast`}
+          state={{
+            from: location?.state?.from ?? "/",
           }}
         >
           <span>Cast</span>{" "}
         </MovieLink>
         <MovieLink
-          to={{
-            pathname: `/movies/${movieId}/reviews`,
-            state: {
-              from: location?.state?.from ?? "/",
-            },
-          }}
+          to={`/movies/${movieId}/reviews`}
+          state={{ from: location?.state?.from ?? "/" }}
         >
           <span>Reviews</span>{" "}
         </MovieLink>
